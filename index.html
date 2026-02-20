@@ -51,7 +51,7 @@ const repo = "jahoo-jahoo/Count-Wd-patient-";
 const filePath = "data.json";
 
 async function getToken() {
-    const response = await fetch("text.dat");
+    const response = await fetch("text.txt");
     const token = await response.text();
     return token.trim();
 }
