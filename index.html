@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ward Transfer System</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { margin:0; font-family:Arial; background:#f4f6f9; }
+    .header { background:linear-gradient(135deg,#007bff,#00c6ff);
+      color:white; padding:20px; text-align:center; font-weight:bold; }
+    .container { padding:15px; }
+    .card { background:white; padding:15px; border-radius:12px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.1); margin-bottom:20px; }
+    input, select { width:100%; padding:10px; margin-bottom:12px;
+      border-radius:8px; border:1px solid #ccc; font-size:14px;}
+    button {
+      width:100%; padding:12px;
+      background:#007bff; color:white;
+      border:none; border-radius:8px;
+      font-size:15px; font-weight:bold; cursor:pointer;
+      margin-bottom:10px;
+    }
+    table { width:100%; border-collapse:collapse; font-size:13px; }
+    th { background:#007bff; color:white; padding:8px; }
+    td { padding:8px; border-bottom:1px solid #ddd; text-align:center; }
+    .editBtn { background:#28a745; color:white; border:none; padding:5px; border-radius:6px; cursor:pointer;}
+    .deleteBtn { background:#dc3545; color:white; border:none; padding:5px; border-radius:6px; cursor:pointer;}
+  </style>
+</head>
+<body><center>
+<h3>Create by Jahoo</h3></center>
+<div class="header">Hospital Pt_wd Transfer System</div>
+
+<div class="container">
+
+<!-- Save / Update Form -->
+<div class="card">
+<input type="hidden" id="editId">
+<label>Date</label>
+<input type="date" id="date">
+<label>From Ward Number</label>
+<input type="text" id="fromWard" placeholder="Enter From Ward Number">
+<label>To Ward Number</label>
+<input type="text" id="toWard" placeholder="Enter To Ward Number">
+<label>Patient count</label>
+<input type="number" id="count">
+<button onclick="saveData()">Save / Update</button>
+</div>
+
+<!-- Filter Section -->
+<div class="card">
+<h3>Filter Records</h3>
+<label>Date (optional)</label>
+<input type="date" id="filterDate">
+<label>From Ward (optional)</label>
+<select id="wardFilter">
+  <option value="">--Select From Ward--</option>
+</select>
+<button onclick="applyFilters()">Apply Filters</button>
+</div>
+
+<!-- Transfer History Table -->
+<div class="card">
+<h3>Transfer History</h3>
+<table border ="1">
+<thead>
+<tr>
+<th>Date</th>
+<th>From Ward</th>
+<th>To Ward</th>
+<th>Patients</th>
+<th>Action</th>
+</tr>
+</thead>
+<tbody id="tableBody"></tbody>
+</table>
+</div>
+
+</div>
+
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getDatabase, ref, push, onValue, update, remove } 
+from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+
+// Firebase Config
+const firebaseConfig = {
+  apiKey: "AIzaSyBqVL34oYFJ-VWu3cBVZIRHTZvFzRUwDXw",
+  authDomain: "inputdata-a7943.firebaseapp.com",
+  databaseURL: "https://inputdata-a7943.firebaseio.com",
+  projectId: "inputdata-a7943",
+  storageBucket: "inputdata-a7943.appspot.com",
+  messagingSenderId: "407312499581",
+  appId: "1:407312499581:web:5a06cdd70735153e30c214",
+  measurementId: "G-C4Z423TGSV"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
+const transfersRef = ref(db, "transfers");
+
+const tableBody = document.getElementById("tableBody");
+const filterDateInput = document.getElementById("filterDate");
+const wardSelect = document.getElementById("wardFilter");
+
+let allData = {};
+
+// Save / Update
+window.saveData = function() {
+  const id = document.getElementById("editId").value;
+  const date = document.getElementById("date").value;
+  const fromWard = document.getElementById("fromWard").value;
+  const toWard = document.getElementById("toWard").value;
+  const count = document.getElementById("count").value;
+
+  if (!date || !fromWard || !toWard || !count) { alert("Fill all fields"); return; }
+
+  if (id) { update(ref(db, "transfers/" + id), { date, fromWard, toWard, count:Number(count) }); }
+  else { push(transfersRef, { date, fromWard, toWard, count:Number(count) }); }
+
+  document.getElementById("editId").value = "";
+  document.getElementById("date").value = "";
+  document.getElementById("fromWard").value = "";
+  document.getElementById("toWard").value = "";
+  document.getElementById("count").value = "";
+}
+
+// Flexible Filter Function (From Ward only)
+window.applyFilters = function() {
+  const selectedDate = filterDateInput.value;
+  const ward = wardSelect.value;
+  tableBody.innerHTML = "";
+
+  for (let key in allData) {
+    const d = allData[key];
+    let show = true;
+    if (selectedDate && d.date !== selectedDate) show = false;
+    if (ward && d.fromWard !== ward) show = false; // Only match From Ward
+    if (show) tableBody.innerHTML += rowHTML(key,d);
+  }
+}
+
+// Edit / Delete functions
+window.editData = function(id) {
+  const rowRef = ref(db, "transfers/" + id);
+  onValue(rowRef, (snapshot) => {
+    const d = snapshot.val();
+    document.getElementById("editId").value = id;
+    document.getElementById("date").value = d.date;
+    document.getElementById("fromWard").value = d.fromWard;
+    document.getElementById("toWard").value = d.toWard;
+    document.getElementById("count").value = d.count;
+  }, { onlyOnce: true });
+}
+window.deleteData = function(id) { if(confirm("Delete?")) remove(ref(db,"transfers/"+id)); }
+
+// Helper for table row
+function rowHTML(key,d){ 
+  return `<tr>
+    <td>${d.date}</td>
+    <td>${d.fromWard}</td>
+    <td>${d.toWard}</td>
+    <td>${d.count}</td>
+    <td>
+      <button class="editBtn" onclick="editData('${key}')">Edit</button>
+      <button class="deleteBtn" onclick="deleteData('${key}')">Del</button>
+    </td>
+  </tr>`;
+}
+
+// Live Firebase data + dynamic ward select
+onValue(transfersRef, snapshot => {
+  allData = snapshot.val() || {};
+
+  // populate From Ward options dynamically
+  const wards = new Set();
+  for (let key in allData) { wards.add(allData[key].fromWard); }
+  wardSelect.innerHTML = '<option value="">--Select From Ward--</option>';
+  Array.from(wards).sort().forEach(w => { wardSelect.innerHTML += `<option value="${w}">${w}</option>`; });
+
+  // Refresh table automatically using current filters
+  applyFilters();
+});
+</script>
+
+</body>
+</html>
