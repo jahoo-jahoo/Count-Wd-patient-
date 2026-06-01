@@ -3,323 +3,117 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DGHM Mannar</title>
+<title>DGHM SMART BOARD</title>
 
 <style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial, sans-serif;
-}
-
 body{
-    background:#f4f4f4;
-    padding:20px;
+    margin:0;
+    font-family:Arial;
+    background:#000;
+    color:white;
 }
 
-.container{
-    max-width:1200px;
-    margin:auto;
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+/* FULL SCREEN DASHBOARD */
+.dashboard{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    height:100vh;
+    gap:10px;
+    padding:10px;
 }
 
-/* TOP BAR */
-.topbar{
+/* HEADER */
+.header{
+    grid-column:1/4;
+    background:#003366;
+    padding:15px;
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:20px;
-}
-
-.today-date{
+    font-size:28px;
     font-weight:bold;
-    color:#003366;
 }
 
-/* BUTTONS */
-button{
-    padding:10px 15px;
-    margin-left:10px;
-    border:none;
-    background:#003366;
-    color:white;
-    border-radius:5px;
-    cursor:pointer;
-}
-
-button:hover{
-    background:#0055aa;
-}
-
-/* LAYOUT */
-.content{
-    display:flex;
-    gap:20px;
-    flex-wrap:wrap;
-}
-
-.section{
-    flex:1;
-    min-width:300px;
-    background:#fafafa;
+/* BOXES */
+.box{
+    background:#111;
     padding:15px;
-    border-radius:8px;
-    border:1px solid #ddd;
+    border-radius:10px;
+    overflow:hidden;
 }
 
 h2{
     text-align:center;
-    margin-bottom:15px;
-}
-
-label{
-    display:block;
-    margin-top:10px;
-    font-weight:bold;
+    font-size:22px;
+    color:#00bfff;
+    margin-bottom:10px;
 }
 
 select{
     width:100%;
     padding:10px;
-    margin-top:5px;
+    font-size:18px;
+    margin-bottom:8px;
+}
+
+/* BIG SCREEN LOOK */
+@media(min-width:1200px){
+    select{
+        font-size:22px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div class="container">
+<div class="dashboard">
 
-    <!-- TOP BAR -->
-    <div class="topbar">
-
-        <h2>DGHM Mannar</h2>
-
-        <div>
-            <span class="today-date" id="todayDate"></span>
-
-            <button onclick="saveData()">💾 Save</button>
-            <button onclick="document.getElementById('fileInput').click()">📂 Load</button>
-
-            <input type="file" id="fileInput" style="display:none" onchange="loadData(event)">
-        </div>
-
+    <!-- HEADER -->
+    <div class="header">
+        <div>DGHM MANNAR</div>
+        <div id="date"></div>
     </div>
 
-    <div class="content">
+    <!-- CONSULTANT -->
+    <div class="box">
+        <h2>CONSULTANT</h2>
 
-        <!-- CONSULTANT -->
-        <div class="section">
-            <h2>Consultant</h2>
+        <select><option>VP</option><option>Dr.1</option><option>Dr.2</option></select>
+        <select><option>VS</option><option>Dr.1</option><option>Dr.2</option></select>
+        <select><option>VOS</option><option>Dr.1</option><option>Dr.2</option></select>
+        <select><option>VPa</option><option>Dr.1</option><option>Dr.2</option></select>
+        <select><option>Ane</option><option>Dr.1</option><option>Dr.2</option></select>
+    </div>
 
-            <label>VP</label>
-            <select id="vp">
-                <option value="">Select Doctor</option>
-                <option>Dr.1</option>
-                <option>Dr.2</option>
-                <option>Dr.3</option>
-            </select>
+    <!-- ONCALL -->
+    <div class="box">
+        <h2>ONCALL</h2>
 
-            <label>VS</label>
-            <select id="vs">
-                <option value="">Select Doctor</option>
-                <option>Dr.1</option>
-                <option>Dr.2</option>
-                <option>Dr.3</option>
-            </select>
-
-            <label>VOS</label>
-            <select id="vos">
-                <option value="">Select Doctor</option>
-                <option>Dr.1</option>
-                <option>Dr.2</option>
-                <option>Dr.3</option>
-            </select>
-
-            <label>VPa</label>
-            <select id="vpa">
-                <option value="">Select Doctor</option>
-                <option>Dr.1</option>
-                <option>Dr.2</option>
-                <option>Dr.3</option>
-            </select>
-
-            <label>Ane</label>
-            <select id="ane">
-                <option value="">Select Doctor</option>
-                <option>Dr.1</option>
-                <option>Dr.2</option>
-                <option>Dr.3</option>
-            </select>
-
-        </div>
-
-        <!-- ONCALL -->
-        <div class="section">
-            <h2>ONCALL</h2>
-
-            <label>8am - 2pm</label>
-            <select id="on1">
-                <option value="">Select Doctor</option>
-                <option>Dr.Anupa</option>
-                <option>Dr.Heshani</option>
-                <option>Dr.Janith</option>
-                <option>Dr.Madushi</option>
-            </select>
-
-            <label>2pm - 8pm</label>
-            <select id="on2">
-                <option value="">Select Doctor</option>
-                <option>Dr.Anupa</option>
-                <option>Dr.Heshani</option>
-                <option>Dr.Janith</option>
-                <option>Dr.Madushi</option>
-            </select>
-
-            <label>8pm - 8am</label>
-            <select id="on3">
-                <option value="">Select Doctor</option>
-                <option>Dr.Anupa</option>
-                <option>Dr.Heshani</option>
-                <option>Dr.Janith</option>
-                <option>Dr.Madushi</option>
-            </select>
-
-        </div>
-
+        <select><option>8am-2pm</option><option>Dr.A</option></select>
+        <select><option>2pm-8pm</option><option>Dr.B</option></select>
+        <select><option>8pm-8am</option><option>Dr.C</option></select>
     </div>
 
     <!-- SPECIALTIES -->
-    <div class="section" style="margin-top:20px;">
-        <h2>Specialties Duty</h2>
+    <div class="box">
+        <h2>SPECIALTIES</h2>
 
-        <label>Medical</label>
-        <select id="med">
-            <option value="">Select Doctor</option>
-            <option>Dr.1</option>
-            <option>Dr.2</option>
-        </select>
-
-        <label>Surgical</label>
-        <select id="sur">
-            <option value="">Select Doctor</option>
-            <option>Dr.1</option>
-            <option>Dr.2</option>
-        </select>
-
-        <label>Paediatric</label>
-        <select id="ped">
-            <option value="">Select Doctor</option>
-            <option>Dr.1</option>
-            <option>Dr.2</option>
-        </select>
-
-        <label>Gyn & Obs</label>
-        <select id="gyn">
-            <option value="">Select Doctor</option>
-            <option>Dr.1</option>
-            <option>Dr.2</option>
-        </select>
-
-        <label>Orthopaedic</label>
-        <select id="ort">
-            <option value="">Select Doctor</option>
-            <option>Dr.1</option>
-            <option>Dr.2</option>
-        </select>
-
-        <label>Anaesthesia</label>
-        <select id="ana">
-            <option value="">Select Doctor</option>
-            <option>Dr.1</option>
-            <option>Dr.2</option>
-        </select>
-
+        <select><option>Medical</option></select>
+        <select><option>Surgical</option></select>
+        <select><option>Paediatric</option></select>
+        <select><option>Gyn & Obs</option></select>
+        <select><option>Orthopaedic</option></select>
+        <select><option>Anaesthesia</option></select>
     </div>
 
 </div>
 
 <script>
-// TODAY DATE
-const today = new Date();
-document.getElementById("todayDate").innerHTML =
-today.toLocaleDateString('en-GB');
-
-
-// SAVE FUNCTION
-function saveData(){
-
-    const data = {
-        vp: document.getElementById("vp").value,
-        vs: document.getElementById("vs").value,
-        vos: document.getElementById("vos").value,
-        vpa: document.getElementById("vpa").value,
-        ane: document.getElementById("ane").value,
-
-        on1: document.getElementById("on1").value,
-        on2: document.getElementById("on2").value,
-        on3: document.getElementById("on3").value,
-
-        med: document.getElementById("med").value,
-        sur: document.getElementById("sur").value,
-        ped: document.getElementById("ped").value,
-        gyn: document.getElementById("gyn").value,
-        ort: document.getElementById("ort").value,
-        ana: document.getElementById("ana").value
-    };
-
-    const json = JSON.stringify(data, null, 2);
-
-    const blob = new Blob([json], {type:"application/json"});
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "dghm-duty.txt";
-
-    document.body.appendChild(a);
-    a.click();
-
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-}
-
-
-// LOAD FUNCTION
-function loadData(event){
-
-    const file = event.target.files[0];
-    if(!file) return;
-
-    const reader = new FileReader();
-
-    reader.onload = function(e){
-        const data = JSON.parse(e.target.result);
-
-        document.getElementById("vp").value = data.vp || "";
-        document.getElementById("vs").value = data.vs || "";
-        document.getElementById("vos").value = data.vos || "";
-        document.getElementById("vpa").value = data.vpa || "";
-        document.getElementById("ane").value = data.ane || "";
-
-        document.getElementById("on1").value = data.on1 || "";
-        document.getElementById("on2").value = data.on2 || "";
-        document.getElementById("on3").value = data.on3 || "";
-
-        document.getElementById("med").value = data.med || "";
-        document.getElementById("sur").value = data.sur || "";
-        document.getElementById("ped").value = data.ped || "";
-        document.getElementById("gyn").value = data.gyn || "";
-        document.getElementById("ort").value = data.ort || "";
-        document.getElementById("ana").value = data.ana || "";
-    };
-
-    reader.readAsText(file);
-}
+// DATE DISPLAY
+const d = new Date();
+document.getElementById("date").innerHTML =
+d.toLocaleDateString('en-GB');
 </script>
 
 </body>
