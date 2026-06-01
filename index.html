@@ -7,266 +7,267 @@
 
 <style>
 body{
-    margin:0;
-    font-family:Arial;
-    background:#000;
-    color:white;
+margin:0;
+font-family:Arial;
+background:#000;
+color:white;
 }
 
 .dashboard{
-    display:grid;
-    grid-template-columns:1fr 1fr 1fr;
-    height:100vh;
-    gap:10px;
-    padding:10px;
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+height:100vh;
+gap:10px;
+padding:10px;
 }
 
 .header{
-    grid-column:1/4;
-    background:#003366;
-    padding:15px;
-    display:flex;
-    justify-content:space-between;
-    font-size:28px;
-    font-weight:bold;
+grid-column:1/4;
+background:#003366;
+padding:15px;
+display:flex;
+justify-content:space-between;
+font-size:28px;
+font-weight:bold;
 }
 
 .box{
-    background:#111;
-    padding:15px;
-    border-radius:10px;
+background:#111;
+padding:15px;
+border-radius:10px;
 }
 
 h2{
-    text-align:center;
-    color:#00bfff;
-    margin-bottom:15px;
+text-align:center;
+color:#00bfff;
+margin-bottom:15px;
 }
 
 /* FIXED LABEL ROW */
 .row{
-    display:flex;
-    align-items:center;
-    margin-bottom:10px;
-    gap:10px;
+display:flex;
+align-items:center;
+margin-bottom:10px;
+gap:10px;
 }
 
 .label{
-    width:60px;
-    font-weight:bold;
-    color:#fff;
-    font-size:18px;
+width:60px;
+font-weight:bold;
+color:#fff;
+font-size:18px;
 }
 
 /* dropdown */
 select{
-    flex:1;
-    padding:8px;
-    font-size:18px;
+flex:1;
+padding:8px;
+font-size:18px;
 }
 </style>
 </head>
 
 <body>
-
 <div class="dashboard">
 
-    
-    <!-- CONSULTANT -->
-    <div class="box">
-        <h2>CONSULTANT</h2>
 
-        <div class="row">
-            <div class="label">VP</div>
-            <select>
-                <option>Select</option>
-                <option>Dr.Hansini</option>
-                <option>Dr.Wishwara</option>
-            </select>
-        </div>
+<!-- CONSULTANT -->
+<div class="box">
+<h2>CONSULTANT</h2>
 
-        <div class="row">
-            <div class="label">VS</div>
-            <select>
-                <option>Select</option>
-                <option>Dr.Tharshan</option>
-                <option>Dr.Deniraj</option>
-            </select>
-        </div>
+<div class="row">
+<div class="label">VP</div>
+<select>
+<option>Select</option>
+<option>Dr.Hansini</option>
+<option>Dr.Wishwara</option>
+</select>
+</div>
+
+<div class="row">
+<div class="label">VS</div>
+<select>
+<option>Select</option>
+<option>Dr.Tharshan</option>
+<option>Dr.Deniraj</option>
+</select>
+</div>
 
 
-        <div class="row">
-            <div class="label">VOS</div>
-            <select>
-                <option>Select</option>
-                <option>Dr.Chamara</option>
-                <option>Dr.2</option>
-            </select>
-        </div>
+<div class="row">
+<div class="label">VOS</div>
+<select>
+<option>Select</option>
+<option>Dr.Chamara</option>
+<option>Dr.2</option>
+</select>
+</div>
 
-        <div class="row">
-            <div class="label">VOG</div>
-            <select>
-                <option>Select</option>
-                <option>Dr.Supun</option>
-                <option>Dr.Madhanki</option>
-            </select>
-        </div>
+<div class="row">
+<div class="label">VOG</div>
+<select>
+<option>Select</option>
+<option>Dr.Supun</option>
+<option>Dr.Madhanki</option>
+</select>
+</div>
 
-        <div class="row">
-            <div class="label">VPa</div>
-            <select>
-                <option>Select</option>
-                <option>Dr.Geethanjali</option>
-                <option>Dr.Nishadhi</option>
-            </select>
-        </div>
+<div class="row">
+<div class="label">VPa</div>
+<select>
+<option>Select</option>
+<option>Dr.Geethanjali</option>
+<option>Dr.Nishadhi</option>
+</select>
+</div>
 
-        <div class="row">
-            <div class="label">Ane</div>
-            <select>
-                <option>Select</option>
-                <option>Dr.Thamosha</option>
-                <option>Dr.Kalpani</option>
-            </select>
-        </div>
-
-    </div>
-
-    <!-- ONCALL -->
-    <div class="box">
-        <h2>ONCALL</h2>
-
-        <div class="row">
-            <div class="label">8-2</div>
-            <select>
-                <option>Select</option>
-                <option>Dr.Anupa</option>
-                <option>Dr.Madushi</option>
-                <option>Dr.Heshani</option>
-                <option>Dr.Janith</option>
-            
-            </select>
-            
-
-        </div>
-
-        <div class="row">
-            <div class="label">2-8</div>
-            <select>
-                <option>Select</option>
-                <option>Dr.Anupa</option>
-                <option>Dr.Madushi</option>
-                <option>Dr.Heshani</option>
-                <option>Dr.Janith</option>
-
-            </select>
-        </div>
-
-        <div class="row">
-            <div class="label">8-8</div>
-            <select>
-                <option>Select</option>
-               <option>Dr.Anupa</option>
-                <option>Dr.Madushi</option>
-                <option>Dr.Heshani</option>
-                <option>Dr.Janith</option>
-            </select>
-        </div>
-
-    </div>
-
-    <!-- SPECIAL -->
-    <div class="box">
-        <h2>SPECIAL</h2>
-
-        <div class="row">
-            <div class="label">Medical</div>
-            <select>
-                <option>Select</option>
-               <option>Dr.Nishan</option>
-               <option>Dr.Sureni</option>
-                <option>Dr.Hashanthi</option>
-                <option>Dr.Yasindhri</option>
-                <option>Dr.Vindhaka</option>
-                <option>Dr.Thiruni</option>
-            </select>
-        </div>
-
-        <div class="row">
-            <div class="label">Surgical</div>
-            <select>
-                <option>Select</option>
-                <option>Dr.Budhika</option>
-               <option>Dr.Franco</option>
-                <option>Dr.Nilanka</option>
-                <option>Dr.Chanaka</option>
-                <option>Dr.Melisa</option>
-                
-                
-            </select>
-        </div>
-
-        <div class="row">
-            <div class="label">Paediatric</div>
-            <select>
-                <option>Select</option>
-                <option>Dr.Nipuni</option>
-               <option>Dr.Yasurika</option>
-                <option>Dr.Gayathri</option>
-                <option>Dr.Nadeesha</option>
-                <option>Dr.Dinesh</option>
-                <option>Dr.Chammika</option>
-                <option>Dr.Rajitha</option>
-                
-            
-            </select>
-        </div>
-        <div class="row">
-            <div class="label">Gyn&Obs</div>
-            <select>
-                <option>Select</option>
-               <option>Dr.Geethma</option>
-               <option>Dr.Amree</option>
-                <option>Dr.Devini</option>
-                <option>Dr.Madushi</option>
-                <option>Dr.Ashanya</option>
-                <option>Dr.Chathura</option>
-                
-            </select>
-        </div>
-        <div class="row">
-            <div class="label">Orthopaedic</div>
-            <select>
-                <option>Select</option>
-                <option>Dr.Gayan</option>
-               <option>Dr.Aravindha</option>
-                <option>Dr.Lakshitha</option>
-            </select>
-        </div>
-        <div class="row">
-            <div class="label">Anaesthesia</div>
-            <select>
-                <option>Select</option>
-                 <option>Dr.Kushantha</option>
-               <option>Dr.sharmal</option>
-                <option>Dr.Hansani</option>
-                <option>Dr.Yohan</option>
-                <option>Dr.Pamudhitha</option>
-                <option>Dr.Pumi</option>
-                <option>Dr.Nishadhi</option>
-               <option>Dr.Shehan</option>
-                <option>Dr.Kaveesha</option>
-                <option>Dr.Yohan</option>
-                <option>Dr.Gihan</option>
-        
-
-            </select>
-        </div>
-
-    </div>
+<div class="row">
+<div class="label">Ane</div>
+<select>
+<option>Select</option>
+<option>Dr.Thamosha</option>
+<option>Dr.Kalpani</option>
+</select>
+</div>
 
 </div>
+
+<!-- ONCALL -->
+<div class="box">
+<h2>ONCALL</h2>
+
+<div class="row">
+<div class="label">8-2</div>
+<select>
+<option>Select</option>
+<option>Dr.Anupa</option>
+<option>Dr.Madushi</option>
+<option>Dr.Heshani</option>
+<option>Dr.Janith</option>
+
+</select>
+
+
+</div>
+
+<div class="row">
+<div class="label">2-8</div>
+<select>
+<option>Select</option>
+<option>Dr.Anupa</option>
+<option>Dr.Madushi</option>
+<option>Dr.Heshani</option>
+<option>Dr.Janith</option>
+
+</select>
+</div>
+
+<div class="row">
+<div class="label">8-8</div>
+<select>
+<option>Select</option>
+<option>Dr.Anupa</option>
+<option>Dr.Madushi</option>
+<option>Dr.Heshani</option>
+<option>Dr.Janith</option>
+</select>
+</div>
+
+</div>
+
+<!-- SPECIAL -->
+<div class="box">
+<h2>SPECIAL</h2>
+
+<div class="row">
+<div class="label">Medical</div>
+<select>
+<option>Select</option>
+<option>Dr.Nishan</option>
+<option>Dr.Sureni</option>
+<option>Dr.Hashanthi</option>
+<option>Dr.Yasindhri</option>
+<option>Dr.Vindhaka</option>
+<option>Dr.Thiruni</option>
+</select>
+</div>
+
+<div class="row">
+<div class="label">Surgical</div>
+<select>
+<option>Select</option>
+<option>Dr.Budhika</option>
+<option>Dr.Franco</option>
+<option>Dr.Nilanka</option>
+<option>Dr.Chanaka</option>
+<option>Dr.Melisa</option>
+
+
+</select>
+</div>
+
+<div class="row">
+<div class="label">Paediatric</div>
+<select>
+<option>Select</option>
+<option>Dr.Nipuni</option>
+<option>Dr.Yasurika</option>
+<option>Dr.Gayathri</option>
+<option>Dr.Nadeesha</option>
+<option>Dr.Dinesh</option>
+<option>Dr.Chammika</option>
+<option>Dr.Rajitha</option>
+
+
+</select>
+</div>
+<div class="row">
+<div class="label">Gyn&Obs</div>
+<select>
+<option>Select</option>
+<option>Dr.Geethma</option>
+<option>Dr.Amree</option>
+<option>Dr.Devini</option>
+<option>Dr.Madushi</option>
+<option>Dr.Ashanya</option>
+<option>Dr.Chathura</option>
+
+</select>
+</div>
+<div class="row">
+<div class="label">Orthopaedic</div>
+<select>
+<option>Select</option>
+<option>Dr.Gayan</option>
+<option>Dr.Aravindha</option>
+<option>Dr.Lakshitha</option>
+</select>
+</div>
+<div class="row">
+<div class="label">Anaesthesia</div>
+<select>
+<option>Select</option>
+<option>Dr.Kushantha</option>
+<option>Dr.sharmal</option>
+<option>Dr.Hansani</option>
+<option>Dr.Yohan</option>
+<option>Dr.Pamudhitha</option>
+<option>Dr.Pumi</option>
+<option>Dr.Nishadhi</option>
+<option>Dr.Shehan</option>
+<option>Dr.Kaveesha</option>
+<option>Dr.Yohan</option>
+<option>Dr.Gihan</option>
+
+
+</select>
+</div>
+
+</div>
+
+</div>
+
+
 
 <script>
 document.getElementById("date").innerHTML =
