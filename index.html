@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DGHM SMART BOARD</title>
+<title>Duty Board</title>
 
 <style>
 body{
@@ -13,54 +13,56 @@ body{
     color:white;
 }
 
-/* FULL SCREEN DASHBOARD */
 .dashboard{
     display:grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns:1fr 1fr 1fr;
     height:100vh;
     gap:10px;
     padding:10px;
 }
 
-/* HEADER */
 .header{
     grid-column:1/4;
     background:#003366;
     padding:15px;
     display:flex;
     justify-content:space-between;
-    align-items:center;
     font-size:28px;
     font-weight:bold;
 }
 
-/* BOXES */
 .box{
     background:#111;
     padding:15px;
     border-radius:10px;
-    overflow:hidden;
 }
 
 h2{
     text-align:center;
-    font-size:22px;
     color:#00bfff;
+    margin-bottom:15px;
+}
+
+/* FIXED LABEL ROW */
+.row{
+    display:flex;
+    align-items:center;
     margin-bottom:10px;
+    gap:10px;
 }
 
-select{
-    width:100%;
-    padding:10px;
+.label{
+    width:60px;
+    font-weight:bold;
+    color:#fff;
     font-size:18px;
-    margin-bottom:8px;
 }
 
-/* BIG SCREEN LOOK */
-@media(min-width:1200px){
-    select{
-        font-size:22px;
-    }
+/* dropdown */
+select{
+    flex:1;
+    padding:8px;
+    font-size:18px;
 }
 </style>
 </head>
@@ -69,7 +71,6 @@ select{
 
 <div class="dashboard">
 
-    <!-- HEADER -->
     <div class="header">
         <div>DGHM MANNAR</div>
         <div id="date"></div>
@@ -78,51 +79,101 @@ select{
     <!-- CONSULTANT -->
     <div class="box">
         <h2>CONSULTANT</h2>
-        
-        <select><h2>VP</h2><option>Dr.Hansini</option><option>Dr2</option></select>
-        <hr><h2>VS</h2><hr>
-        <select><option>Dr.Deniraj</option><option>Dr.2</option></select>
-        <hr><h2>VOS</h2><hr>
-        <select><option>VOS</option><option>Dr.Chamara</option><option>Dr.2</option></select>
-        <hr><h2>VOG</h2><hr>
-       <select><option>VOG</option><option>Dr.Supun</option><option>Dr.2</option></select>
-       <hr><h2>VPa</h2><hr>
-        <select><option>VPa</option><option>Dr.Nishadi</option><option>Dr.2</option></select>
-        <hr><h2>Ane</h2><hr>
-        <select><option>Ane</option><option>Dr.Tamosha</option><option>Dr.2</option></select>
+
+        <div class="row">
+            <div class="label">VP</div>
+            <select>
+                <option>Select</option>
+                <option>Dr.1</option>
+                <option>Dr.2</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="label">VS</div>
+            <select>
+                <option>Select</option>
+                <option>Dr.1</option>
+                <option>Dr.2</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="label">VOS</div>
+            <select>
+                <option>Select</option>
+                <option>Dr.1</option>
+                <option>Dr.2</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="label">VPa</div>
+            <select>
+                <option>Select</option>
+                <option>Dr.1</option>
+                <option>Dr.2</option>
+            </select>
+        </div>
+
+        <div class="row">
+            <div class="label">Ane</div>
+            <select>
+                <option>Select</option>
+                <option>Dr.1</option>
+                <option>Dr.2</option>
+            </select>
+        </div>
+
     </div>
 
     <!-- ONCALL -->
     <div class="box">
         <h2>ONCALL</h2>
-        
-        <h2>8am-2pm</h2><hr>
-        <select><option>Dr.Anupa</option><option>Dr.Madushi</option><option>Dr.Heshani</option><option>Dr.Janith</option></select>
-        <hr><h2>2pm-8pm</h2><hr>
-        <select><<option>Dr.Anupa</option><option>Dr.Madushi</option><option>Dr.Heshani</option><option>Dr.Janith</option></select>
-        <hr><h2>8pm-8am</h2><hr>
-        <select><option>Dr.Anupa</option><option>Dr.Madushi</option><option>Dr.Heshani</option><option>Dr.Janith</option></select>
+
+        <div class="row">
+            <div class="label">8-2</div>
+            <select><option>Dr.A</option></select>
+        </div>
+
+        <div class="row">
+            <div class="label">2-8</div>
+            <select><option>Dr.B</option></select>
+        </div>
+
+        <div class="row">
+            <div class="label">8-8</div>
+            <select><option>Dr.C</option></select>
+        </div>
+
     </div>
 
-    <!-- SPECIALTIES -->
+    <!-- SPECIAL -->
     <div class="box">
-        <h2>SPECIALTIES</h2>
+        <h2>SPECIAL</h2>
 
-        <select><option>Medical</option></select>
-        <select><option>Surgical</option></select>
-        <select><option>Paediatric</option></select>
-        <select><option>Gyn & Obs</option></select>
-        <select><option>Orthopaedic</option></select>
-        <select><option>Anaesthesia</option></select>
+        <div class="row">
+            <div class="label">Med</div>
+            <select><option>Dr.1</option></select>
+        </div>
+
+        <div class="row">
+            <div class="label">Sur</div>
+            <select><option>Dr.2</option></select>
+        </div>
+
+        <div class="row">
+            <div class="label">Ped</div>
+            <select><option>Dr.3</option></select>
+        </div>
+
     </div>
 
 </div>
 
 <script>
-// DATE DISPLAY
-const d = new Date();
 document.getElementById("date").innerHTML =
-d.toLocaleDateString('en-GB');
+new Date().toLocaleDateString('en-GB');
 </script>
 
 </body>
