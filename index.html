@@ -1,185 +1,325 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Ward Transfer System</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body { margin:0; font-family:Arial; background:#f4f6f9; }
-    .header { background:linear-gradient(135deg,#007bff,#00c6ff);
-      color:white; padding:20px; text-align:center; font-weight:bold; }
-    .container { padding:15px; }
-    .card { background:white; padding:15px; border-radius:12px;
-      box-shadow:0 4px 10px rgba(0,0,0,0.1); margin-bottom:20px; }
-    input, select { width:100%; padding:10px; margin-bottom:12px;
-      border-radius:8px; border:1px solid #ccc; font-size:14px;}
-    button {
-      width:100%; padding:12px;
-      background:#007bff; color:white;
-      border:none; border-radius:8px;
-      font-size:15px; font-weight:bold; cursor:pointer;
-      margin-bottom:10px;
-    }
-    table { width:100%; border-collapse:collapse; font-size:13px; }
-    th { background:#007bff; color:white; padding:8px; }
-    td { padding:8px; border-bottom:1px solid #ddd; text-align:center; }
-    .editBtn { background:#28a745; color:white; border:none; padding:5px; border-radius:6px; cursor:pointer;}
-    .deleteBtn { background:#dc3545; color:white; border:none; padding:5px; border-radius:6px; cursor:pointer;}
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DGHM Mannar</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f4f4f4;
+    padding:20px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:10px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+/* TOP BAR */
+.topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.today-date{
+    font-weight:bold;
+    color:#003366;
+}
+
+/* BUTTONS */
+button{
+    padding:10px 15px;
+    margin-left:10px;
+    border:none;
+    background:#003366;
+    color:white;
+    border-radius:5px;
+    cursor:pointer;
+}
+
+button:hover{
+    background:#0055aa;
+}
+
+/* LAYOUT */
+.content{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.section{
+    flex:1;
+    min-width:300px;
+    background:#fafafa;
+    padding:15px;
+    border-radius:8px;
+    border:1px solid #ddd;
+}
+
+h2{
+    text-align:center;
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-top:10px;
+    font-weight:bold;
+}
+
+select{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+}
+</style>
 </head>
-<body><center>
-<h3>Create by Jahoo</h3></center>
-<div class="header">Hospital Pt_wd Transfer System</div>
+
+<body>
 
 <div class="container">
 
-<!-- Save / Update Form -->
-<div class="card">
-<input type="hidden" id="editId">
-<label>Date</label>
-<input type="date" id="date">
-<label>From Ward Number</label>
-<input type="text" id="fromWard" placeholder="Enter From Ward Number">
-<label>To Ward Number</label>
-<input type="text" id="toWard" placeholder="Enter To Ward Number">
-<label>Patient count</label>
-<input type="number" id="count">
-<button onclick="saveData()">Save / Update</button>
+    <!-- TOP BAR -->
+    <div class="topbar">
+
+        <h2>DGHM Mannar</h2>
+
+        <div>
+            <span class="today-date" id="todayDate"></span>
+
+            <button onclick="saveData()">💾 Save</button>
+            <button onclick="document.getElementById('fileInput').click()">📂 Load</button>
+
+            <input type="file" id="fileInput" style="display:none" onchange="loadData(event)">
+        </div>
+
+    </div>
+
+    <div class="content">
+
+        <!-- CONSULTANT -->
+        <div class="section">
+            <h2>Consultant</h2>
+
+            <label>VP</label>
+            <select id="vp">
+                <option value="">Select Doctor</option>
+                <option>Dr.1</option>
+                <option>Dr.2</option>
+                <option>Dr.3</option>
+            </select>
+
+            <label>VS</label>
+            <select id="vs">
+                <option value="">Select Doctor</option>
+                <option>Dr.1</option>
+                <option>Dr.2</option>
+                <option>Dr.3</option>
+            </select>
+
+            <label>VOS</label>
+            <select id="vos">
+                <option value="">Select Doctor</option>
+                <option>Dr.1</option>
+                <option>Dr.2</option>
+                <option>Dr.3</option>
+            </select>
+
+            <label>VPa</label>
+            <select id="vpa">
+                <option value="">Select Doctor</option>
+                <option>Dr.1</option>
+                <option>Dr.2</option>
+                <option>Dr.3</option>
+            </select>
+
+            <label>Ane</label>
+            <select id="ane">
+                <option value="">Select Doctor</option>
+                <option>Dr.1</option>
+                <option>Dr.2</option>
+                <option>Dr.3</option>
+            </select>
+
+        </div>
+
+        <!-- ONCALL -->
+        <div class="section">
+            <h2>ONCALL</h2>
+
+            <label>8am - 2pm</label>
+            <select id="on1">
+                <option value="">Select Doctor</option>
+                <option>Dr.Anupa</option>
+                <option>Dr.Heshani</option>
+                <option>Dr.Janith</option>
+                <option>Dr.Madushi</option>
+            </select>
+
+            <label>2pm - 8pm</label>
+            <select id="on2">
+                <option value="">Select Doctor</option>
+                <option>Dr.Anupa</option>
+                <option>Dr.Heshani</option>
+                <option>Dr.Janith</option>
+                <option>Dr.Madushi</option>
+            </select>
+
+            <label>8pm - 8am</label>
+            <select id="on3">
+                <option value="">Select Doctor</option>
+                <option>Dr.Anupa</option>
+                <option>Dr.Heshani</option>
+                <option>Dr.Janith</option>
+                <option>Dr.Madushi</option>
+            </select>
+
+        </div>
+
+    </div>
+
+    <!-- SPECIALTIES -->
+    <div class="section" style="margin-top:20px;">
+        <h2>Specialties Duty</h2>
+
+        <label>Medical</label>
+        <select id="med">
+            <option value="">Select Doctor</option>
+            <option>Dr.1</option>
+            <option>Dr.2</option>
+        </select>
+
+        <label>Surgical</label>
+        <select id="sur">
+            <option value="">Select Doctor</option>
+            <option>Dr.1</option>
+            <option>Dr.2</option>
+        </select>
+
+        <label>Paediatric</label>
+        <select id="ped">
+            <option value="">Select Doctor</option>
+            <option>Dr.1</option>
+            <option>Dr.2</option>
+        </select>
+
+        <label>Gyn & Obs</label>
+        <select id="gyn">
+            <option value="">Select Doctor</option>
+            <option>Dr.1</option>
+            <option>Dr.2</option>
+        </select>
+
+        <label>Orthopaedic</label>
+        <select id="ort">
+            <option value="">Select Doctor</option>
+            <option>Dr.1</option>
+            <option>Dr.2</option>
+        </select>
+
+        <label>Anaesthesia</label>
+        <select id="ana">
+            <option value="">Select Doctor</option>
+            <option>Dr.1</option>
+            <option>Dr.2</option>
+        </select>
+
+    </div>
+
 </div>
 
-<!-- Filter Section -->
-<div class="card">
-<h3>Filter Records</h3>
-<label>Date (optional)</label>
-<input type="date" id="filterDate">
-<label>From Ward (optional)</label>
-<select id="wardFilter">
-  <option value="">--Select From Ward--</option>
-</select>
-<button onclick="applyFilters()">Apply Filters</button>
-</div>
+<script>
+// TODAY DATE
+const today = new Date();
+document.getElementById("todayDate").innerHTML =
+today.toLocaleDateString('en-GB');
 
-<!-- Transfer History Table -->
-<div class="card">
-<h3>Transfer History</h3>
-<table border ="1">
-<thead>
-<tr>
-<th>Date</th>
-<th>From Ward</th>
-<th>To Ward</th>
-<th>Patients</th>
-<th>Action</th>
-</tr>
-</thead>
-<tbody id="tableBody"></tbody>
-</table>
-</div>
 
-</div>
+// SAVE FUNCTION
+function saveData(){
 
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getDatabase, ref, push, onValue, update, remove } 
-from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
+    const data = {
+        vp: document.getElementById("vp").value,
+        vs: document.getElementById("vs").value,
+        vos: document.getElementById("vos").value,
+        vpa: document.getElementById("vpa").value,
+        ane: document.getElementById("ane").value,
 
-// Firebase Config
-const firebaseConfig = {
-  apiKey: "AIzaSyBqVL34oYFJ-VWu3cBVZIRHTZvFzRUwDXw",
-  authDomain: "inputdata-a7943.firebaseapp.com",
-  databaseURL: "https://inputdata-a7943.firebaseio.com",
-  projectId: "inputdata-a7943",
-  storageBucket: "inputdata-a7943.appspot.com",
-  messagingSenderId: "407312499581",
-  appId: "1:407312499581:web:5a06cdd70735153e30c214",
-  measurementId: "G-C4Z423TGSV"
-};
+        on1: document.getElementById("on1").value,
+        on2: document.getElementById("on2").value,
+        on3: document.getElementById("on3").value,
 
-const app = initializeApp(firebaseConfig);
-const db = getDatabase(app);
-const transfersRef = ref(db, "transfers");
+        med: document.getElementById("med").value,
+        sur: document.getElementById("sur").value,
+        ped: document.getElementById("ped").value,
+        gyn: document.getElementById("gyn").value,
+        ort: document.getElementById("ort").value,
+        ana: document.getElementById("ana").value
+    };
 
-const tableBody = document.getElementById("tableBody");
-const filterDateInput = document.getElementById("filterDate");
-const wardSelect = document.getElementById("wardFilter");
+    const json = JSON.stringify(data, null, 2);
 
-let allData = {};
+    const blob = new Blob([json], {type:"application/json"});
+    const url = URL.createObjectURL(blob);
 
-// Save / Update
-window.saveData = function() {
-  const id = document.getElementById("editId").value;
-  const date = document.getElementById("date").value;
-  const fromWard = document.getElementById("fromWard").value;
-  const toWard = document.getElementById("toWard").value;
-  const count = document.getElementById("count").value;
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "dghm-duty.txt";
 
-  if (!date || !fromWard || !toWard || !count) { alert("Fill all fields"); return; }
+    document.body.appendChild(a);
+    a.click();
 
-  if (id) { update(ref(db, "transfers/" + id), { date, fromWard, toWard, count:Number(count) }); }
-  else { push(transfersRef, { date, fromWard, toWard, count:Number(count) }); }
-
-  document.getElementById("editId").value = "";
-  document.getElementById("date").value = "";
-  document.getElementById("fromWard").value = "";
-  document.getElementById("toWard").value = "";
-  document.getElementById("count").value = "";
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
 }
 
-// Flexible Filter Function (From Ward only)
-window.applyFilters = function() {
-  const selectedDate = filterDateInput.value;
-  const ward = wardSelect.value;
-  tableBody.innerHTML = "";
 
-  for (let key in allData) {
-    const d = allData[key];
-    let show = true;
-    if (selectedDate && d.date !== selectedDate) show = false;
-    if (ward && d.fromWard !== ward) show = false; // Only match From Ward
-    if (show) tableBody.innerHTML += rowHTML(key,d);
-  }
+// LOAD FUNCTION
+function loadData(event){
+
+    const file = event.target.files[0];
+    if(!file) return;
+
+    const reader = new FileReader();
+
+    reader.onload = function(e){
+        const data = JSON.parse(e.target.result);
+
+        document.getElementById("vp").value = data.vp || "";
+        document.getElementById("vs").value = data.vs || "";
+        document.getElementById("vos").value = data.vos || "";
+        document.getElementById("vpa").value = data.vpa || "";
+        document.getElementById("ane").value = data.ane || "";
+
+        document.getElementById("on1").value = data.on1 || "";
+        document.getElementById("on2").value = data.on2 || "";
+        document.getElementById("on3").value = data.on3 || "";
+
+        document.getElementById("med").value = data.med || "";
+        document.getElementById("sur").value = data.sur || "";
+        document.getElementById("ped").value = data.ped || "";
+        document.getElementById("gyn").value = data.gyn || "";
+        document.getElementById("ort").value = data.ort || "";
+        document.getElementById("ana").value = data.ana || "";
+    };
+
+    reader.readAsText(file);
 }
-
-// Edit / Delete functions
-window.editData = function(id) {
-  const rowRef = ref(db, "transfers/" + id);
-  onValue(rowRef, (snapshot) => {
-    const d = snapshot.val();
-    document.getElementById("editId").value = id;
-    document.getElementById("date").value = d.date;
-    document.getElementById("fromWard").value = d.fromWard;
-    document.getElementById("toWard").value = d.toWard;
-    document.getElementById("count").value = d.count;
-  }, { onlyOnce: true });
-}
-window.deleteData = function(id) { if(confirm("Delete?")) remove(ref(db,"transfers/"+id)); }
-
-// Helper for table row
-function rowHTML(key,d){ 
-  return `<tr>
-    <td>${d.date}</td>
-    <td>${d.fromWard}</td>
-    <td>${d.toWard}</td>
-    <td>${d.count}</td>
-    <td>
-      <button class="editBtn" onclick="editData('${key}')">Edit</button>
-      <button class="deleteBtn" onclick="deleteData('${key}')">Del</button>
-    </td>
-  </tr>`;
-}
-
-// Live Firebase data + dynamic ward select
-onValue(transfersRef, snapshot => {
-  allData = snapshot.val() || {};
-
-  // populate From Ward options dynamically
-  const wards = new Set();
-  for (let key in allData) { wards.add(allData[key].fromWard); }
-  wardSelect.innerHTML = '<option value="">--Select From Ward--</option>';
-  Array.from(wards).sort().forEach(w => { wardSelect.innerHTML += `<option value="${w}">${w}</option>`; });
-
-  // Refresh table automatically using current filters
-  applyFilters();
-});
 </script>
 
 </body>
