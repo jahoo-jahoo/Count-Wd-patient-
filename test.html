@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Duty Board</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:#000;
+color:white;
+}
+
+.dashboard{
+display:grid;
+grid-template-columns:1fr 1fr 1fr;
+height:100vh;
+gap:10px;
+padding:10px;
+}
+
+.header{
+grid-column:1/4;
+background:#003366;
+padding:15px;
+display:flex;
+justify-content:space-between;
+font-size:28px;
+font-weight:bold;
+}
+
+.box{
+background:#111;
+padding:15px;
+border-radius:10px;
+}
+
+h2{
+text-align:center;
+color:#00bfff;
+margin-bottom:15px;
+}
+
+/* FIXED LABEL ROW */
+.row{
+display:flex;
+align-items:center;
+margin-bottom:10px;
+gap:10px;
+}
+
+.label{
+width:60px;
+font-weight:bold;
+color:#fff;
+font-size:18px;
+}
+
+/* dropdown */
+select{
+flex:1;
+padding:8px;
+font-size:18px;
+}
+    
+#videoScreen{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:black;
+    z-index:99999;
+}
+
+#videoScreen video{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    cursor:pointer;
+}
+
+#boardScreen{
+    width:100%;
+    height:100%;
+}
+
+</style>
+</head>
+
+<body>
+ <div id="videoScreen" style="display:none;">
+    <video id="introVideo" muted loop>
+        <source src="video.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div id="boardScreen">
+
+<div class="dashboard">
+<div class="header">
+        <div>DGHM ETU</div>
+        <div id="date"></div>
+</div>
+
+<!-- CONSULTANT -->
+<div class="box">
+<h2>CONSULTANT</h2>
+
+<div class="row">
+<div class="label">VP</div>
+<select>
+<option>Select</option>
+<option>Dr.Hansini</option>
+<option>Dr.Wishwara</option>
+</select>
+</div>
+
+<div class="row">
+<div class="label">VS</div>
+<select>
+<option>Select</option>
+<option>Dr.Tharshan</option>
+<option>Dr.Deniraj</option>
+</select>
+</div>
+
+
+<div class="row">
+<div class="label">VOS</div>
+<select>
+<option>Select</option>
+<option>Dr.Chamara</option>
+<option>Dr.2</option>
+</select>
+</div>
+
+<div class="row">
+<div class="label">VOG</div>
+<select>
+<option>Select</option>
+<option>Dr.Supun</option>
+<option>Dr.Madhanki</option>
+</select>
+</div>
+
+<div class="row">
+<div class="label">VPa</div>
+<select>
+<option>Select</option>
+<option>Dr.Geethanjali</option>
+<option>Dr.Nishadhi</option>
+</select>
+</div>
+
+<div class="row">
+<div class="label">Ane</div>
+<select>
+<option>Select</option>
+<option>Dr.Thamosha</option>
+<option>Dr.Kalpani</option>
+</select>
+</div>
+
+</div>
+
+<!-- ONCALL -->
+<div class="box">
+<h2>ONCALL</h2>
+
+<div class="row">
+<div class="label">8-2</div>
+<select>
+<option>Select</option>
+<option>Dr.Anupa</option>
+<option>Dr.Madushi</option>
+<option>Dr.Heshani</option>
+<option>Dr.Janith</option>
+
+</select>
+
+
+</div>
+
+<div class="row">
+<div class="label">2-8</div>
+<select>
+<option>Select</option>
+<option>Dr.Anupa</option>
+<option>Dr.Madushi</option>
+<option>Dr.Heshani</option>
+<option>Dr.Janith</option>
+
+</select>
+</div>
+
+<div class="row">
+<div class="label">8-8</div>
+<select>
+<option>Select</option>
+<option>Dr.Anupa</option>
+<option>Dr.Madushi</option>
+<option>Dr.Heshani</option>
+<option>Dr.Janith</option>
+</select>
+</div>
+
+</div>
+
+<!-- SPECIAL -->
+<div class="box">
+<h2>SPECIAL</h2>
+
+<div class="row">
+<div class="label">Medical</div>
+<select>
+<option>Select</option>
+<option>Dr.Nishan</option>
+<option>Dr.Sureni</option>
+<option>Dr.Hashanthi</option>
+<option>Dr.Yasindhri</option>
+<option>Dr.Vindhaka</option>
+<option>Dr.Thiruni</option>
+</select>
+</div>
+
+<div class="row">
+<div class="label">Surgical</div>
+<select>
+<option>Select</option>
+<option>Dr.Budhika</option>
+<option>Dr.Franco</option>
+<option>Dr.Nilanka</option>
+<option>Dr.Chanaka</option>
+<option>Dr.Melisa</option>
+
+
+</select>
+</div>
+
+<div class="row">
+<div class="label">Pae</div>
+<select>
+<option>Select</option>
+<option>Dr.Nipuni</option>
+<option>Dr.Yasurika</option>
+<option>Dr.Gayathri</option>
+<option>Dr.Nadeesha</option>
+<option>Dr.Dinesh</option>
+<option>Dr.Chammika</option>
+<option>Dr.Rajitha</option>
+
+
+</select>
+</div>
+<div class="row">
+<div class="label">Gyn&Obs</div>
+<select>
+<option>Select</option>
+<option>Dr.Geethma</option>
+<option>Dr.Amree</option>
+<option>Dr.Devini</option>
+<option>Dr.Madushi</option>
+<option>Dr.Ashanya</option>
+<option>Dr.Chathura</option>
+
+</select>
+</div>
+<div class="row">
+<div class="label">Ortho</div>
+<select>
+<option>Select</option>
+<option>Dr.Gayan</option>
+<option>Dr.Aravindha</option>
+<option>Dr.Lakshitha</option>
+</select>
+</div>
+<div class="row">
+<div class="label">Anae</div>
+<select>
+<option>Select</option>
+<option>Dr.Kushantha</option>
+<option>Dr.sharmal</option>
+<option>Dr.Hansani</option>
+<option>Dr.Yohan</option>
+<option>Dr.Pamudhitha</option>
+<option>Dr.Pumi</option>
+<option>Dr.Nishadhi</option>
+<option>Dr.Shehan</option>
+<option>Dr.Kaveesha</option>
+<option>Dr.Yohan</option>
+<option>Dr.Gihan</option>
+
+
+</select>
+</div>
+
+</div>
+</div>
+
+
+
+<script>
+document.getElementById("date").innerHTML =
+new Date().toLocaleDateString('en-GB');
+</script>
+
+
+
+<div style="position:fixed;bottom:10px;left:10px;z-index:9999;">
+    <button onclick="saveData()">Save Data</button>
+    <button onclick="loadData()">Load Data</button>
+</div>
+</div>
+<script>
+
+// Date
+document.getElementById("date").innerHTML =
+new Date().toLocaleDateString('en-GB');
+
+// Save to browser
+function saveData(){
+
+    let data = [];
+
+    document.querySelectorAll("select").forEach(function(sel){
+        data.push(sel.value);
+    });
+
+    localStorage.setItem(
+        "dghm_etu_board",
+        JSON.stringify(data)
+    );
+
+    alert("Data Saved");
+}
+
+// Load from browser
+function loadData(){
+
+    let data =
+    JSON.parse(
+        localStorage.getItem("dghm_etu_board")
+    );
+
+    if(!data){
+        alert("No Saved Data");
+        return;
+    }
+
+    let selects =
+    document.querySelectorAll("select");
+
+    selects.forEach(function(sel,index){
+
+        if(data[index]){
+            sel.value = data[index];
+        }
+
+    });
+
+    alert("Data Loaded");
+}
+
+</script>
+    
+    <script>
+
+const videoScreen = document.getElementById("videoScreen");
+const boardScreen = document.getElementById("boardScreen");
+const video = document.getElementById("introVideo");
+
+let boardTimer;
+
+// Board 5 minutes
+function startBoardTimer(){
+
+    clearTimeout(boardTimer);
+
+    boardTimer = setTimeout(function(){
+
+        boardScreen.style.display = "none";
+        videoScreen.style.display = "block";
+
+        video.currentTime = 0;
+        video.play();
+
+    },3000); // 5 min
+
+}
+
+// Page open = Board
+startBoardTimer();
+
+// Video click = Board
+video.addEventListener("click",function(){
+
+    video.pause();
+
+    videoScreen.style.display = "none";
+    boardScreen.style.display = "block";
+
+    startBoardTimer();
+
+});
+
+</script>
+    
+    
+</body>
+</html>
