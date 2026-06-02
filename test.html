@@ -69,12 +69,17 @@ font-size:18px;
     position:fixed;
     top:0;
     left:0;
-    width:100%;
-    height:100%;
+    width:100vw;
+    height:100vh;
     background:black;
     z-index:99999;
 }
 
+#introVideo{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
 #videoScreen video{
     width:100%;
     height:100%;
@@ -92,10 +97,10 @@ font-size:18px;
 
 <body>
  <div id="videoScreen" style="display:none;">
-    <video id="introVideo" muted loop>
+    <video id="introVideo" autoplay muted loop playsinline>
         <source src="video.mp4" type="video/mp4">
     </video>
-</div>
+ </div>
 
 <div id="boardScreen">
 
@@ -396,17 +401,13 @@ function startBoardTimer(){
 startBoardTimer();
 
 // Video click = Board
-video.addEventListener("click",function(){
+video.addEventListener("loadeddata", function(){
 
-    video.pause();
-
-    videoScreen.style.display = "none";
-    boardScreen.style.display = "block";
-
-    startBoardTimer();
+    if(video.requestFullscreen){
+        video.requestFullscreen();
+    }
 
 });
-
 </script>
     
     
