@@ -277,5 +277,63 @@ document.getElementById("date").innerHTML =
 new Date().toLocaleDateString('en-GB');
 </script>
 
+
+
+<div style="position:fixed;bottom:10px;left:10px;z-index:9999;">
+    <button onclick="saveData()">Save Data</button>
+    <button onclick="loadData()">Load Data</button>
+</div>
+
+<script>
+
+// Date
+document.getElementById("date").innerHTML =
+new Date().toLocaleDateString('en-GB');
+
+// Save to browser
+function saveData(){
+
+    let data = [];
+
+    document.querySelectorAll("select").forEach(function(sel){
+        data.push(sel.value);
+    });
+
+    localStorage.setItem(
+        "dghm_etu_board",
+        JSON.stringify(data)
+    );
+
+    alert("Data Saved");
+}
+
+// Load from browser
+function loadData(){
+
+    let data =
+    JSON.parse(
+        localStorage.getItem("dghm_etu_board")
+    );
+
+    if(!data){
+        alert("No Saved Data");
+        return;
+    }
+
+    let selects =
+    document.querySelectorAll("select");
+
+    selects.forEach(function(sel,index){
+
+        if(data[index]){
+            sel.value = data[index];
+        }
+
+    });
+
+    alert("Data Loaded");
+}
+
+</script>
 </body>
 </html>
