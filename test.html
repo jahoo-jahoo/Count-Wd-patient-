@@ -91,11 +91,14 @@ font-size:18px;
 </head>
 
 <body>
- <div id="videoScreen" style="display:none;">
-    <video id="introVideo" muted loop>
-        <source src="video.mp4" type="video/mp4">
-    </video>
-</div>
+ <video id="introVideo"
+       autoplay
+       muted
+       loop
+       playsinline
+       preload="auto">
+    <source src="video.mp4" type="video/mp4">
+ </video>
 
 <div id="boardScreen">
 
@@ -403,6 +406,14 @@ video.addEventListener("click",function(){
     boardScreen.style.display = "block";
 
     startBoardTimer();
+
+    window.addEventListener("load", function(){
+
+    const video = document.getElementById("introVideo");
+
+    video.load();
+
+});
 
 });
 
